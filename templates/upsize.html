@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% load pwa %}
+<head>
+    <!-- Required meta tags -->
+    {% progressive_web_app_meta %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <!-- CSS -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <title>Shopbackgo</title>
+</head>
+<body>
+<div class="header" id="myHeader">
+  <a href="/" class="main-page" style="color:#5A5A5A">Shopbackgo</a>
+  <a href="/promoupdate"><span class="menu-item" style="font-weight: lighter">Promoupdate</span></a>
+  <a href="/upsize"><span class="menu-item" style="color: red; font-weight: bold">Upsize(BETA)</span></a>
+  <a href="/screenshot"><span class="menu-item" style="font-weight: lighter">Screenshot(공사중)</span></a>
+</div>
+<br><br>
+<div class="kist-container">
+  <!-- <div class="bust">
+    <img src="/static/img/chatdoge.png">
+  </div> -->
+  <!-- <p id="intro-message">"I'm GPT4."</p> -->
+  <!-- <div style="margin: 20px 0; color: #aaa;" class="remaining-queries"> Ex: Write me a research paper about the dream theory.
+  </div> -->
+  <form class="create-form" method="post">
+    {% csrf_token %}
+    <textarea class="text-input" id="prompt" type="text" placeholder="업사이즈 내용을 입력하세요." name="prompt" value="{{ prompt }}"></textarea>
+    <br>
+      <!-- <button type="button" id="btn-paste" style="background-color:white;color:#FF3407;border: 1px solid #FF3407" onclick="paste()">Paste</button> -->
+      <button type="submit" id="ask" onclick="disableButton()" ><span id="buttontext">Let's Go</span><span id="buttonload"><i class="fa fa-spinner fa-spin"></i>Loading</span></button>
+  </form>
+      <!-- <label class="custom-file-upload">
+      <input class="image-button" type="file" accept="image/*" capture="camera">📷 Camera
+      </label> -->
+</div>
+
+<script type="text/javascript"> 
+  let text = document.getElementById('gen_message').innerHTML;
+  const copyContent = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      console.log('Content copied to clipboard');
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  }
+
+// Get the input field
+var input = document.getElementById("prompt");
+
+// Execute a function when the user presses a key on the keyboard
+input.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("ask").click();
+  }
+});
+
+function disableButton() {
+    // Disable link and change text color
+    document.getElementById("ask").style.pointerEvents = "none";
+    document.getElementById("ask").style.backgroundColor='Gray';
+
+    // Show loading button
+    document.getElementById("buttontext").style.display = "none";
+    document.getElementById("buttonload").style.display = "block";
+}
+
+// Paste Button Feature
+function paste() {
+    const pasteButton = document.querySelector('button');
+    
+    pasteButton.addEventListener('click', async () => {
+      try {
+        const text = await navigator.clipboard.readText()
+        document.querySelector('textarea').value += text;
+        console.log('Text pasted.');
+      } catch (error) {
+        console.log('Failed to read clipboard. Using execCommand instead.');
+        document.querySelector('textarea').focus();
+        const result = document.execCommand('paste')
+        console.log('document.execCommand result: ', result);
+      }
+    });
+}
+
+  
+</script> 
+</body>
+</html>
+

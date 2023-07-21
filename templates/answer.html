@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- CSS -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <title>Shopbackgo</title>
+</head>
+<body>
+<div class="header" id="myHeader">
+  <a href="/" class="main-page" style="color:#5A5A5A">Shopbackgo</a>
+  <a href="/promoupdate"><span class="menu-item" style="font-weight: lighter">Promoupdate</span></a>
+  <a href="/upsize"><span class="menu-item" style="font-weight: lighter">Upsize(BETA)</span></a>
+  <a href="/screenshot"><span class="menu-item" style="font-weight: lighter">Screenshot(공사중)</span></a>
+</div>
+<br><br>
+<div class="kist-container">
+<div class="message  truncated">
+  <span id="gen_message" style="color:black;white-space: pre-wrap" class="spiel-content"> {{ message }}</span>
+</div>
+<div class="actions">
+  <!-- <a class="action" onclick="copyContent()">➹ 복사하기</a>
+  <span> </span>
+  <a class="action" href="/">⟳ 다른 질문하기</a> -->
+  <a class="action" href="/">→ Promoupdate</a>
+  <span> </span>
+  <a class="action" href="/upsize">→ Upsize</a>
+</div>
+</div>
+
+<script type="text/javascript"> 
+  let text = document.getElementById('gen_message').innerHTML;
+  const copyContent = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      console.log('Content copied to clipboard');
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  }
+</script> 
+</body>
+</html>
+

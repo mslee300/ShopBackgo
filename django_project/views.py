@@ -5,7 +5,7 @@ import requests
 from .forms import AnswerForm
 
 
-openai.api_key = "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"
+openai.api_key = ""
 
 
 # AI message generator

@@ -1,5 +1,5 @@
-# ChatGPT with GPT4
+# Shopbackgo
 
 <div align ='center'> 
-  <img width="921" alt="image" src="https://user-images.githubusercontent.com/55467050/236147103-7abb8cc5-b399-46e0-a4b6-f14b1a258953.png"> 
+  <img width="921" alt="image" src="https://github.com/mslee300/grandma-ai/assets/55467050/6ee0bf34-59af-4b09-86a2-40d13392ad7d"> 
 </div>
